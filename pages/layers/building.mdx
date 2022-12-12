@@ -1,0 +1,58 @@
+# Building Overlay
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import React from "react";
+import { MFMap, MFBuildingOverlay } from "react-map4d-map";
+
+let options = {
+  getUrl: function (x, y, zoom) {
+    return `rest-api-get-building-from-tile-coordinate`;
+  },
+  parserData: function (response) {
+    let buildingDatas = [];
+    /**
+     * parser data from response ...
+     */
+    return buildingDatas;
+  },
+  prefixId: "prefix",
+  visible: true,
+};
+const DemoBuildingOverlay = () => {
+  return (
+    <>
+      <div style={{ width: "100%", height: "400px" }}>
+        <MFMap
+          options={{
+            center: { lat: 16.042590223437674, lng: 108.2295094493915 },
+            zoom: 16,
+          }}
+          accessKey={"Your key"}
+          version={"2.4"}
+        >
+          <MFBuildingOverlay
+            getUrl={options.getUrl}
+            parserData={options.parserData}
+            prefixId={options.prefixId}
+          />
+        </MFMap>
+      </div>
+    </>
+  );
+};
+
+DemoBuildingOverlay.propTypes = {};
+
+export default DemoBuildingOverlay;
+```
+
+## Props
+
+| No  |    Name    | isRequired |   Type   |                                                                                  Description                                                                                   |
+| :-: | :--------: | :--------: | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  1  |   getUrl   |    true    | function |                                                      Hàm nhận vào 3 giá trị x, y, zoom và trả về đường dẫn đến Buildings                                                       |
+|  2  | parserData |    true    | function |                                               Hàm nhận vào response data từ api của getUrl và parser thành mảng các BuildingData                                               |
+|  3  |  prefixId  |   false    |  string  | Giá trị được thêm vào trước id của những building thuộc building overlay.Dùng để tránh nhầm lẫn trong trường hợp trùng id với building của Map4D hay các building overlay khác |
+|  4  |  visible   |   fasle    | boolean  |                                                                 Nếu true thì building overlay sẽ được hiển thị                                                                 |

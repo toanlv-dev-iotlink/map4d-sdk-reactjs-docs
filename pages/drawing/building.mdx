@@ -1,0 +1,71 @@
+# Building
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import React, { useState } from "react";
+import { MFBuilding, MFMap } from "react-map4d-map";
+
+const DemoBuilding = () => {
+
+  const [position, setPosition] = useState({ lat: 16.103254, lng: 108.214835 });
+
+  const onMapReady = (map) => {
+    map.setMapType(map4d.MapType.map3d);
+  }
+
+  return (
+    <>
+      <div style={{ width: "100%", height: "400px" }}>
+        <MFMap
+          onMapReady={onMapReady}
+          options={{
+            center: { lat: 16.103254, lng: 108.214835 },
+            zoom: 18,
+            tilt: 50,
+            bearing: 250,
+            controls: true,
+          }}
+          accessKey={"Your key"}
+          version={"2.4"}
+        >
+          <MFBuilding
+            name="test"
+            model={"https://sw-hcm-1.vinadata.vn/v1/AUTH_d0ecabcbdcd74f6aa6ac9a5da528eb78/sdk/models/5d26e774bb542caaf439e605.obj"}
+            texture={"https://sw-hcm-1.vinadata.vn/v1/AUTH_d0ecabcbdcd74f6aa6ac9a5da528eb78/sdk/textures/5d26e775bb542caaf439e607.png"}
+            position={position}
+          />
+        </MFMap>
+      </div>
+    </>
+  );
+};
+
+export default DemoBuilding;
+
+```
+
+## Kết quả
+
+import DemoBuilding from "../../components/demoBuilding";
+
+<DemoBuilding />
+
+## Props
+
+| No  |          Name          | isRequired |   Type    | Default value |                                                                                                                                                                                                  Description                                                                                                                                                                                                  |
+| :-: | :--------------------: | :--------: | :-------: | :-----------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  1  |        position        |    true    |  ILatLng  |               |                                                                                                                                                                             Chỉ định một ILatLng để xác định vị trí của Building.                                                                                                                                                                             |
+|  2  |          name          |   false    |  string   | Unknown name  |                                                                                                                                                                                     Chỉ định tên của Building mà bạn tạo.                                                                                                                                                                                     |
+|  3  |         scale          |   false    |  number   |       1       |                                                                                                                 Chỉ định tỉ lệ của Building được vẽ ra ở trên bản đồ so với tỉ lệ thật của nó. Ví dụ khi giá trị scale là 0.5 thì Building sẽ nhỏ hơn một nửa so với kích thước thật của nó.                                                                                                                  |
+|  4  |        bearing         |   fasle    |  number   |       0       |                                                                                 Chỉ định góc quay của Building khi được vẽ ra trên bản đồ theo đơn vị là Độ. Bình thường giá trị mặc định của nó là 0. Khi bạn muốn quay Building theo một hướng nào đó thì bạn chỉ cần set lại giá trị bearing trong khoảng từ 0 đến 360 độ.                                                                                 |
+|  5  |       elevation        |   fasle    |  number   |       0       |                                                                                                                                                                      Chỉ định độ cao của Building so với mực nước biển theo đơn vị mét.                                                                                                                                                                       |
+|  6  |         height         |   fasle    |  number   |       1       |                                                                   Chỉ định chiều cao của Building theo đơn vị là mét. Thuộc tính này chỉ có tác dụng khi Building của bạn được tạo từ một mảng ILatLng thông qua thuộc tính coordinates (hay còn gọi là Extrude Building). Nó không có tác dụng với Building được vẽ bằng Model và Texture.                                                                   |
+|  7  |         model          |   fasle    |  string   |               |                                                                                                                                                                         Chỉ định một đường dẫn URL để lấy dữ liệu model cho Building.                                                                                                                                                                         |
+|  8  |        texture         |   fasle    |  string   |               |                                                      Chỉ định một đường dẫn URL để lấy dữ liệu texture cho Building. Thuộc tính này chỉ được dùng khi thuộc tính model được set giá trị. Nó sẽ map texture này vào model mà bạn đã set cho Building. Nếu bạn không set giá trị texture khi đã set giá trị model thì bản đồ sẽ vẽ một building màu trắng.                                                      |
+|  9  |      coordinates       |   fasle    | ILatLng[] |               | Chỉ định một mảng vị trí ILatLng để tạo một Building hình khối với mặt đáy của hình khối là mảng vị trí này. Nó kết hợp với thuộc tính height để tạo chiều cao cho hình khối đó (building này được gọi là Extrude Building). Trường hợp dùng coordinates thì sẽ không dùng đến thuộc tính texture. Nếu set giá trị cho coordinates và cả model đồng thời thì sẽ ưu tiên lấy giá trị của modelđể tạo Building. |
+| 10  |        visible         |   fasle    |  boolean  |     true      |                                                                                                                                                                               Xác định Building có thể ẩn hay hiện trên bản đồ                                                                                                                                                                                |
+| 11  |       draggable        |   fasle    |  boolean  |     false     |                                                                                                                                                                        Cho phép người dùng có thể kéo Building trên bản đồ hay không.                                                                                                                                                                         |
+| 12  | userInteractionEnabled |   fasle    |  boolean  |     true      |                                                                                                 Cho phép người dùng có thể tương tác được với Building hay không. Khi không cho phép người dùng tương tác với Building thì tất cả các sự kiện liên quan tới Building từ phía người dùng sẽ không có tác dụng.                                                                                                 |
+| 13  |        selected        |   fasle    |  boolean  |     false     |                                                                            Chỉ định Building có được hightlight hay không. Khi nó được set là true thì Building sẽ được vẽ một đường viền màu đỏ xung quanh để giúp người dùng dễ nhận biết. Còn khi nó được set giá trị là false thì nó sẽ được vẽ như một Building bình thường.                                                                             |
+| 14  |         growUp         |   fasle    |  boolean  |     true      |                                                                                                                                           Quy định Building có hiệu ứng mọc hay không. Hiệu ứng này tạo cảm giác đẹp mắt hơn khi Building vừa được load lên bản đồ.                                                                                                                                           |

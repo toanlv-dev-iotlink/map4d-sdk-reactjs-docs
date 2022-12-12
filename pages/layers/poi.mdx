@@ -1,0 +1,73 @@
+# POI Overlay
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import React from "react";
+import { MFMap, MFPOIOverlay } from "react-map4d-map";
+
+let options = {
+  getUrl: function (x, y, zoom) {
+    return `https://poi-random.herokuapp.com/poi/${zoom}/${x}/${y}`;
+  },
+  parserData: function (response) {
+    let data = JSON.parse(response);
+    let places = data.pois || [];
+    let poiDatas = [];
+    places.forEach((place) => {
+      let poiData = {
+        ...place,
+        titleColor: "#0000FF",
+        type: "park",
+      };
+      poiDatas.push(poiData);
+    });
+    return poiDatas;
+  },
+  prefixId: "poi-overlay-",
+};
+const DemoPOIOverlay = () => {
+  const onMapReady = (map) => {
+    map.setPOIsEnabled(false);
+  };
+
+  return (
+    <>
+      <div style={{ width: "100%", height: "400px" }}>
+        <MFMap
+          onMapReady={onMapReady}
+          options={{
+            center: { lat: 16.042590223437674, lng: 108.2295094493915 },
+            zoom: 16,
+          }}
+          accessKey={"Your key"}
+          version={"2.4"}
+        >
+          <MFPOIOverlay
+            getUrl={options.getUrl}
+            parserData={options.parserData}
+            prefixId={options.prefixId}
+          />
+        </MFMap>
+      </div>
+    </>
+  );
+};
+
+export default DemoPOIOverlay;
+```
+
+## Kết quả
+
+import DemoPOIOverlay from "../../components/demoPOIOverlay";
+
+<DemoPOIOverlay />
+
+## Props
+
+| No  |    Name    | isRequired |   Type   |                                             Description                                              |
+| :-: | :--------: | :--------: | :------: | :--------------------------------------------------------------------------------------------------: |
+|  1  |   getUrl   |    true    | function |                       Chỉ định một ILatLng để xác định vị trí ban đầu của POI.                       |
+|  2  | parserData |    true    | function | Chỉ định tiêu đề của POI. Tiêu đề sẽ hiển thị thông tin của POI mà bạn muốn hiển thị cho người dùng. |
+|  3  |  prefixId  |   false    |  string  |                                  Chỉ định thông tin mô tả của POI.                                   |
+|  4  |  visible   |   fasle    | boolean  |             Chỉ định màu cho tiêu đề và màu icon (nếu sử dụng thuộc tính type) của POI.              |

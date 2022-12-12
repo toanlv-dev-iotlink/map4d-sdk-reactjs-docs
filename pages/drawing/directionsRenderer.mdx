@@ -1,0 +1,97 @@
+# Directions Renderer
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import React, { useRef } from "react";
+import { MFDirectionsRenderer, MFMap } from "react-map4d-map";
+
+const option = {
+  routes: [
+    [
+      { lat: 16.078814, lng: 108.221592 },
+      { lat: 16.078972, lng: 108.223034 },
+      { lat: 16.075353, lng: 108.223513 },
+    ],
+    [
+      { lat: 16.078814, lng: 108.221592 },
+      { lat: 16.077491, lng: 108.221735 },
+      { lat: 16.077659, lng: 108.223212 },
+      { lat: 16.075353, lng: 108.223513 },
+    ],
+  ],
+  originMarkerOptions: {
+    position: { lat: 16.079774, lng: 108.220534 },
+    title: "Start",
+    draggable: true,
+    visible: true,
+  },
+  destinationMarkerOptions: {
+    position: { lat: 16.073661, lng: 108.222972 },
+    title: "End",
+    visible: true,
+    draggable: true,
+    userInteractionEnabled: false,
+  },
+
+  activeOutlineWidth: 0,
+  inactiveOutlineWidth: 2,
+  inactiveOutlineColor: "#FF00FF",
+};
+
+const DemoDirectionsRenderer = () => {
+  return (
+    <>
+      <div style={{ width: "100%", height: "400px" }}>
+        <MFMap
+          options={{
+            center: { lat: 16.077279, lng: 108.222275 },
+            zoom: 16,
+            controls: true,
+          }}
+          accessKey={"Your key"}
+          version={"2.4"}
+        >
+          <MFDirectionsRenderer
+            routes={option.routes}
+            originMarkerOptions={option.originMarkerOptions}
+            destinationMarkerOptions={option.destinationMarkerOptions}
+            activeOutlineWidth={option.activeOutlineWidth}
+            inactiveOutlineWidth={option.inactiveOutlineWidth}
+            inactiveOutlineColor={option.inactiveOutlineColor}
+          />
+        </MFMap>
+      </div>
+    </>
+  );
+};
+
+export default DemoDirectionsRenderer;
+```
+
+## Kết quả
+
+import DemoDirectionsRenderer from "../../components/demoDirectionsRenderer";
+
+<DemoDirectionsRenderer />
+
+## Props
+
+| No  |           Name           | isRequired |                 Type                 | Default value |                                                                                 Description                                                                                  |
+| :-: | :----------------------: | :--------: | :----------------------------------: | :-----------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  1  |          routes          |   false    | string \| RouteOptions\| ILatLng[][] |               | Truyền vào một mảng 2 chiều các tọa độ ILatLng hoặc dữ liệu Route bằng JSON string trả về từ Map4D SDK API Route hoặc một đối tượng RouteOptions để tạo Directions Renderer. |
+|  2  |       activedIndex       |   false    |                number                |               |                                                       Chỉ định index cho route được active trong Directions Renderer.                                                        |
+|  3  |    activeStrokeWidth     |   false    |                number                |               |                                                             Chỉ định độ rộng của active line theo đơn vị point.                                                              |
+|  4  |    activeStrokeColor     |   fasle    |                string                |               |                                                       Chỉ định màu sắc của active line theo mã HEX (ví dụ "#FF0000").                                                        |
+|  5  |    activeOutlineWidth    |   fasle    |                number                |               |                                                            Chỉ định độ rộng của active outline theo đơn vị point.                                                            |
+|  6  |    activeOutlineColor    |   fasle    |                string                |               |                                                      Chỉ định màu sắc của active outline theo mã HEX (ví dụ "#FF0000").                                                      |
+|  7  |   activeStrokePattern    |   fasle    |             PatternItem              |               |                                                     Chỉ định pattern của active line. Tương tự như pattern của Polyline                                                      |
+|  8  |   inactiveStrokeWidth    |   fasle    |                number                |               |                                                            Chỉ định độ rộng của inactive line theo đơn vị point.                                                             |
+|  9  |   inactiveStrokeColor    |   fasle    |                string                |               |                                                      Chỉ định màu sắc của inactive line theo mã HEX (ví dụ "#FF0000").                                                       |
+| 10  |   inactiveOutlineWidth   |   fasle    |                number                |               |                                                           Chỉ định độ rộng của inactive outline theo đơn vị point.                                                           |
+| 11  |   inactiveOutlineColor   |   fasle    |                string                |               |                                                     Chỉ định màu sắc của inactive outline theo mã HEX (ví dụ "#FF0000").                                                     |
+| 12  |  inactiveStrokePattern   |   fasle    |             PatternItem              |               |                                                   Chỉ định pattern của inactive outline. Tương tự như pattern của Polyline                                                   |
+| 13  |   originMarkerOptions    |   fasle    |            MarkerOptions             |               |                                                                   Chỉ định các options cho marker bắt đầu.                                                                   |
+| 14  | destinationMarkerOptions |   fasle    |            MarkerOptions             |               |                                                                  Chỉ định các options cho marker kết thúc.                                                                   |
+| 14  | destinationMarkerOptions |   fasle    |           MarkerOptions[]            |               |                                    Là mảng marker option chỉ định các marker waypoint. Các marker waypoint này có vị trí nằm ngoài route                                     |
+| 14  | destinationMarkerOptions |   fasle    |               Function               |               |  Chỉ định options callback sau khi thực hiện việc kéo Marker. Callback được gọi với tham số args là đối tượng chứa tọa độ LatLng của các Marker trong Directions Renderer.   |

@@ -1,0 +1,54 @@
+# POI
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import React, { useState } from "react"
+import { MFMap, MFPOI } from "react-map4d-map"
+
+const DemoPOI = (props) => {
+
+    const [position, setPosition] = useState({lat: 10.774434, lng: 106.701727})
+
+    return (
+        <>
+            <div style={{ width: '100%', height: '400px' }}>
+                <MFMap
+                    options={{
+                        center: { lat: 10.774434, lng: 106.701727 },
+                        zoom: 18,
+                        controls: true
+                    }}
+                    accessKey={'Your key'}
+                    version={"2.4"} >
+                    <MFPOI title={"Demo POI cafe"} type={"cafe"} position={position} />
+                </MFMap>
+            </div>
+        </>
+    )
+}
+
+export default DemoPOI
+```
+
+## Kết quả
+
+import DemoPOI from "../../components/demoPOI";
+
+<DemoPOI />
+
+## Props
+
+| No  |          Name          | isRequired |  Type   | Default value |                                                                                          Description                                                                                           |
+| :-: | :--------------------: | :--------: | :-----: | :-----------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  1  |        position        |    true    | ILatLng |               |                                                                    Chỉ định một ILatLng để xác định vị trí ban đầu của POI.                                                                    |
+|  2  |         title          |   false    | string  |               |                                              Chỉ định tiêu đề của POI. Tiêu đề sẽ hiển thị thông tin của POI mà bạn muốn hiển thị cho người dùng.                                              |
+|  3  |        subtitle        |   false    | string  |               |                                                                               Chỉ định thông tin mô tả của POI.                                                                                |
+|  4  |         color          |   fasle    | string  |               |                                                          Chỉ định màu cho tiêu đề và màu icon (nếu sử dụng thuộc tính type) của POI.                                                           |
+|  5  |          type          |   fasle    | string  |               |                             Chỉ định kiểu của POI, tùy thuộc vào kiểu mà icon của POI sẽ có hình ảnh tương ứng. Phụ thuộc vào kind được quy định trong file style.                             |
+|  6  |          icon          |   fasle    | string  |     null      |              Chỉ định một đường dẫn URL để lấy hình ảnh cho POI. Nếu option này được set giá trị thì hình ảnh của POI sẽ lấy theo URL này mà không cần quan tâm tới option type .              |
+|  7  |       elevation        |   fasle    | number  |       0       |                                                                  Chỉ định độ cao của POI so với mực nước biển, đơn vị là mét.                                                                  |
+|  8  |         zIndex         |   fasle    | number  |       0       |                                    Chỉ định thứ tự chồng nhau giữa các POI với nhau, nó không dùng để xác định thứ tự chồng nhau so với các đối tượng khác.                                    |
+|  9  |        visible         |   fasle    | boolean |     true      |                                                                          Xác định POI có thể ẩn hay hiện trên bản đồ                                                                           |
+| 10  |       draggable        |   fasle    | boolean |     false     |                                                                    Cho phép người dùng có thể kéo POI trên bản đồ hay không                                                                    |
+| 11  | userInteractionEnabled |   fasle    | boolean |     true      | Cho phép người dùng có thể tương tác được với POI hay không. Khi không cho phép người dùng tương tác với POI thì tất cả các sự kiện liên quan tới POI từ phía người dùng sẽ không có tác dụng. |

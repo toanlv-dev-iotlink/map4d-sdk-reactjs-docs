@@ -1,5 +1,8 @@
 {
   "tile": "Tile Overlay",
   "ground": "Ground Overlay",
-  "image": "Image Overlay"
+  "image": "Image Overlay",
+  "poi": "POI Overlay",
+  "building": "Building Overlay",
+  "data": "Data Layer"
 }
