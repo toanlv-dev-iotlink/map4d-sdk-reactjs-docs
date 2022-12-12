@@ -2,15 +2,14 @@
 
 ## Sử dụng
 
-```jsx copy
-
+```jsx filename="demo.js" copy
 import * as React from "react";
-import {MFMap} from "react-map4d-map"
+import { MFMap } from "react-map4d-map";
 
 const DemoMap = () => {
   return (
     <div style={{ width: "100%", height: "400px" }}>
-        <MFMap
+      <MFMap
         options={{
           center: { lat: 16.072163491469226, lng: 108.22690536081757 },
           zoom: 15,
@@ -24,13 +23,24 @@ const DemoMap = () => {
 };
 
 export default DemoMap;
-
 ```
 
 ## Kết quả
 
-import DemoMap from "../components/demoMap"
+import DemoMap from "../components/demoMap";
 
-<DemoMap/>
+<DemoMap />
 
 ## Props
+
+| No  |         Name         | isRequired |           Type           | Default value |                      Description                      |
+| :-: | :------------------: | :--------: | :----------------------: | :-----------: | :---------------------------------------------------: |
+|  1  |       options        |    true    |        MapOptions        |               |                 Các tùy chọn của map                  |
+|  2  |      accessKey       |    true    |          string          |               |                        Key api                        |
+|  3  |       version        |    true    |          string          |               |                    Version của sdk                    |
+|  4  |     environment      |   fasle    | "dev"\|"test"\|undefined |               |  Môi trường map, nếu ko có thì sẽ là bản production   |
+|  5  |      onMapReady      |   fasle    |    (map: any) => void    |               |          Event được gọi sau khi map được tạo          |
+|  6  |   onClickLocation    |   fasle    |   (args: any) => void    |               |          Event click vào một vị trí trên map          |
+|  7  | onRightClickLocation |   fasle    |   (args: any) => void    |               |       Event right click vào một vị trí trên map       |
+|  8  |   onCameraChanging   |   fasle    |   (args: any) => void    |               | Event khi một thông số bất kỳ của camera map thây đổi |
+|  9  |    onTilesLoaded     |   fasle    |   (args: any) => void    |               |    Event khi map load xong tất cả các tile ban đầu    |

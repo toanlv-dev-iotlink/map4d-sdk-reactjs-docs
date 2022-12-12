@@ -13,6 +13,11 @@ const config: DocsThemeConfig = {
   footer: {
     text: 'Nextra Docs Template',
   },
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – Map4DDocs'
+    }
+  },
 }
 
 export default config

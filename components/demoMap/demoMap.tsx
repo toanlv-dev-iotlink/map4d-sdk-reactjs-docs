@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { MFMap } from "react-map4d-map";
 
 type DemoMapProps = {
@@ -6,12 +7,14 @@ type DemoMapProps = {
 };
 
 const DemoMap: React.FC<any> = () => {
-  const onMapReady = (map: any) => {};
+  const [showMap, setShowMap] = useState(false)
+  useEffect(() => {
+    setShowMap(true)
+  }, [])
   return (
     <div style={{ width: "100%", height: "400px" }}>
-      {typeof window !== "undefined" && (
+      {showMap && (
         <MFMap
-          onMapReady={onMapReady}
           options={{
             center: { lat: 16.072163491469226, lng: 108.22690536081757 },
             zoom: 15,
