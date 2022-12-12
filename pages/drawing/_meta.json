@@ -2,5 +2,9 @@
   "marker": "Marker",
   "circle": "Circle",
   "polyline": "Polyline",
-  "polygon": "Polygon"
+  "polygon": "Polygon",
+  "poi": "POI",
+  "building": "Building",
+  "markerCluster":"Marker Cluster",
+  "directionsRenderer":"Directions Renderer"
 }
