@@ -1,0 +1,67 @@
+# Polygon
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import { useState } from "react";
+import { MFMap, MFPolygon } from "react-map4d-map";
+
+const DemoPolygon = () => {
+  const [paths, setPaths] = useState([
+    [
+      { lat: 10.771749380684138, lng: 106.70001268386841 },
+      { lat: 10.768534727930506, lng: 106.70332789421082 },
+      { lat: 10.770684860129196, lng: 106.70641779899597 },
+      { lat: 10.77348844082262, lng: 106.70296311378479 },
+      { lat: 10.771749380684138, lng: 106.70001268386841 },
+    ],
+  ]);
+  const onMapReady1 = (map1) => {
+    console.log(map1);
+  };
+
+  return (
+    <>
+      <div style={{ width: "100%", height: "300px" }}>
+        <MFMap
+          onMapReady={onMapReady1}
+          options={{
+            center: { lat: 10.771111, lng: 106.703218 },
+            zoom: 16,
+            controls: true,
+          }}
+          accessKey={"your key"}
+          version={"2.4"}
+        >
+          <MFPolygon fillOpacity={0.1} paths={paths} />
+        </MFMap>
+      </div>
+    </>
+  );
+};
+
+export default DemoPolygon;
+```
+
+## Kết quả
+
+import DemoPolygon from "../../components/demoPolygon";
+
+<DemoPolygon />
+
+## Props
+
+| No  |          Name          | isRequired |               Type               | Default value |                                                                                                        Description                                                                                                        |
+| :-: | :--------------------: | :--------: | :------------------------------: | :-----------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  1  |         paths          |    true    |           ILatLng[][]            |               | Truyền vào một mảng chứa các mảng tọa độ ILatLng để tạo Polygon. Nếu bạn muốn tạo các Polygon có lỗ ở bên trong thì bạn cần truyền ít nhất 2 mảng tọa độ, còn nếu không có lỗ thì chỉ cần truyền một mảng vào tham số này |
+|  2  |       fillColor        |   false    |              string              |   "#0000FF"   |                                                                           Chỉ định màu tô phía trong của Polygon theo mã HEX (ví dụ "#FF0000")                                                                            |
+|  3  |      fillOpacity       |   false    |              number              |       1       |                                                        Chỉ định độ trong suốt của màu tô phía trong Polygon, khoảng giá trị của nó nằm trong khoảng từ 0.0 đến 1.0                                                        |
+|  4  |        visible         |   fasle    |             boolean              |     true      |                                                                                      Xác định Polygon có thể ẩn hay hiện trên bản đồ                                                                                      |
+|  5  |      strokeColor       |   fasle    |              string              |   "#0000FF"   |                                                                              Chỉ định màu sắc đường viền ngoài cùng của Polygon theo mã HEX                                                                               |
+|  6  |      strokeWidth       |   fasle    |              number              |               |                                                                                 Chỉ định độ rộng đường viền của Polygon theo đơn vị point                                                                                 |
+|  7  |       draggable        |   fasle    |             boolean              |     false     |                                                                               Cho phép người dùng có thể kéo Polygon trên bản đồ hay không                                                                                |
+|  8  |         zIndex         |   false    |              number              |       0       |                                                         Chỉ định thứ tự chồng nhau giữa các Polygon với nhau hoặc giữa Polygon với các đối tượng khác trên bản đồ                                                         |
+|  9  |       elevation        |   false    |              number              |       0       |                                                                              Chỉ định độ cao của Polygon so với mực nước biển, đơn vị là mét                                                                              |
+| 11  | userInteractionEnabled |   fasle    |             boolean              |     true      |                                                                              Cho phép người dùng có thể tương tác được với Polygon hay không                                                                              |
+| 12  |          map           |   fasle    |            map4d.Map             |               |                                                                     Hiển thị Polygon ở map nào, nếu không có sẽ hiển thị ở map gần nhất chứa Polygon                                                                      |
+| 13  |       onCreated        |   fasle    | (Polygon: map4d.Polygon) => void |               |                                                                                                 Event sau khi tạo Polygon                                                                                                 |

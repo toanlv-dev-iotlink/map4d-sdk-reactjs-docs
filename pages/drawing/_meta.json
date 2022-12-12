@@ -1,3 +1,6 @@
 {
-  "marker": "Marker"
+  "marker": "Marker",
+  "circle": "Circle",
+  "polyline": "Polyline",
+  "polygon": "Polygon"
 }

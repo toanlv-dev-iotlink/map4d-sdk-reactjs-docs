@@ -1,0 +1,57 @@
+# Circle
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import { useState } from "react";
+import { MFCircle, MFMap } from "react-map4d-map";
+
+const DemoCircle = () => {
+  const [post, setPost] = useState({ lat: 10.773201, lng: 106.700147 });
+  const [radius, setRadius] = useState(10);
+
+  return (
+    <>
+      <div style={{ width: "100%", height: "300px" }}>
+        <MFMap
+          options={{
+            center: post,
+            zoom: 20,
+            controls: true,
+          }}
+          accessKey={"d69ab3c4b70818de546a1b1bb15aeaa7"}
+          version={"2.4"}
+        >
+          <MFCircle radius={radius} center={post}></MFCircle>
+        </MFMap>
+      </div>
+    </>
+  );
+};
+
+export default DemoCircle;
+```
+
+## Kết quả
+
+import DemoCircle from "../../components/demoCircle";
+
+<DemoCircle />
+
+## Props
+
+| No  |          Name          | isRequired |              Type              | Default value |                                               Description                                               |
+| :-: | :--------------------: | :--------: | :----------------------------: | :-----------: | :-----------------------------------------------------------------------------------------------------: |
+|  1  |         center         |    true    |            ILatLng             |               |                                             Vị trí trên map                                             |
+|  2  |         radius         |    true    |             number             |     true      |                                         bán kính, đơn vị là mét                                         |
+|  3  |       fillColor        |   false    |             string             |   "#0000FF"   |                        Chỉ định màu sắc của Circle theo mã HEX (ví dụ "#FF0000")                        |
+|  4  |      fillOpacity       |   fasle    |             number             |       1       |      Chỉ định độ trong suốt màu của Circle, khoảng giá trị của nó nằm trong khoảng từ 0.0 đến 1.0       |
+|  5  |        visible         |   fasle    |            boolean             |     true      |                             Xác định Circle có thể ẩn hay hiện trên bản đồ                              |
+|  6  |      strokeColor       |   fasle    |             string             |   "#00FF00"   |                  Chỉ định màu sắc của đường viền Circle theo mã HEX (ví dụ "#FF0000")                   |
+|  7  |      strokeWidth       |   fasle    |             number             |       0       |                         Chỉ định độ lớn của đường viền Circle theo đơn vị point                         |
+|  8  |       draggable        |   fasle    |            boolean             |     false     |                       Cho phép người dùng có thể kéo Circle trên bản đồ hay không                       |
+|  9  |         zIndex         |   false    |             number             |       0       | Chỉ định thứ tự chồng nhau giữa các Circle với nhau hoặc giữa Circle với các đối tượng khác trên bản đồ |
+| 10  |       elevation        |   false    |             number             |       0       |                     Chỉ định độ cao của Circle so với mực nước biển, đơn vị là mét                      |
+| 11  | userInteractionEnabled |   fasle    |            boolean             |               |                     Cho phép người dùng có thể tương tác được với Marker hay không                      |
+| 12  |          map           |   fasle    |           map4d.Map            |               |             Hiển thị Circle ở map nào, nếu không có sẽ hiển thị ở map gần nhất chứa Circle              |
+| 13  |       onCreated        |   fasle    | (circle: map4d.Circle) => void |               |                                        Event sau khi tạo Circle                                         |

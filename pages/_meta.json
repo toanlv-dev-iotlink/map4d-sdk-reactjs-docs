@@ -2,9 +2,8 @@
   "index": "Introduction",
   "start": "Getting started",
   "map": "Map",
-  "drawing":"Drawing on the Map",
-  "another": "Another",
-  "advanced": "Advanced",
+  "drawing": "Drawing on the Map",
+  "layers": "Layers",
   "about": {
     "title": "About",
     "type": "page"
