@@ -4,14 +4,17 @@
   "map": "Map",
   "drawing": "Drawing on the Map",
   "layers": "Layers",
+  "references": "References",
   "about": {
     "title": "About",
-    "type": "page"
+    "type": "page",
+    "href": "https://iotlink.com.vn/ve-chung-toi/#ve-iot",
+    "newWindow": true
   },
   "contact": {
     "title": "Contact ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "https://iotlink.com.vn/lien-he/",
     "newWindow": true
   }
 }

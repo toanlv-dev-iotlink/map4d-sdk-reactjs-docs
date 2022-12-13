@@ -1,0 +1,53 @@
+# Tile Overlay
+
+## Sử dụng
+
+```jsx filename="demo.js" copy
+import { MFMap, MFTileOverlay } from "react-map4d-map"
+
+
+const getUrl = (x, y, zoom, is3dMode) => {
+    return `https://tile.openstreetmap.de/${zoom}/${x}/${y}.png`
+},
+
+const DemoTileOverlay = (props) => {
+  return (
+    <>
+      <div style={{ width: '100%', height: '400px' }}>
+        <MFMap
+          options={{
+            center: { lat: 16.077279, lng: 108.222275 },
+            zoom: 16,
+            controls: true
+          }}
+          accessKey={"your key"}
+          version={"2.4"} >
+          <MFTileOverlay
+            getUrl={getUrl}
+            zIndex={1}
+          />
+        </MFMap>
+      </div>
+    </>
+  )
+}
+
+export default DemoTileOverlay;
+```
+
+## Kết quả
+
+import DemoTileOverLay from "../../components/demoTileOverLay";
+
+<DemoTileOverLay />
+
+## Props
+
+| No  |   Name    | isRequired |                   Type                    | Default value |                                                     Description                                                     |
+| :-: | :-------: | :--------: | :---------------------------------------: | :-----------: | :-----------------------------------------------------------------------------------------------------------------: |
+|  1  |  getUrl   |    true    |                 function                  |               |                    Hàm nhận vào 4 giá trị x, y, zoom, is3dMode và trả về đường dẫn đến map tile                     |
+|  2  |  visible  |   false    |                  boolean                  |     true      |                                    Nếu là true thì Tile overlay sẽ được hiển thị                                    |
+|  3  |  zIndex   |   false    |                  number                   |       0       | Chỉ định thứ tự chồng nhau giữa các Tile Overlay với nhau hoặc giữa Tile Overlay với các đối tượng khác trên bản đồ |
+|  4  |  opacity  |   false    |                  number                   |       1       |                                Độ trong suốt của Tile overlay. Có giá trị từ 0 đến 1                                |
+|  5  |    map    |   fasle    |                 map4d.Map                 |               |             Hiển thị Tile Overlay ở map nào, nếu không có sẽ hiển thị ở map gần nhất chứa Tile Overlay              |
+|  6  | onCreated |   fasle    | (Tile Overlay: map4d.TileOverlay) => void |               |                                           Event sau khi tạo Tile Overlay                                            |
