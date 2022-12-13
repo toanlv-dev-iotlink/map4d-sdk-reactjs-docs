@@ -9,13 +9,13 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://iotlink.com.vn/lien-he/',
   },
-  docsRepositoryBase: 'https://docs.map4d.vn/map4d-map/react-js/v1.1.8',
+  docsRepositoryBase: 'https://github.com/vantoan2509/map4d-sdk-reactjs-docs/tree/main',
   footer: {
     text: 'React Map4d Sdk Docs',
   },
   useNextSeoProps() {
     return {
-      titleTemplate: '%s – Map4DDocs'
+      titleTemplate: '%s – Map4D Docs'
     }
   },
 }
