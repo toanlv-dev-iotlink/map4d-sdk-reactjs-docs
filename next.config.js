@@ -6,7 +6,7 @@ const withNextra = require("nextra")({
 const { PHASE_EXPORT, PHASE_PRODUCTION_BUILD } = require("next/constants");
 
 module.exports = (phase, { defaultConfig }) => {
-  if (phase == PHASE_EXPORT || phase == PHASE_PRODUCTION_BUILD) {
+  if (process.env.APP_ENV == "export") {
     return withNextra({
       assetPrefix: "https://docs.map4d.vn/map4d-map/react-js/v1.1.8",
       images: {

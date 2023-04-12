@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
-    "start": "next start"
+    "export": "APP_ENV=export next build && APP_ENV=export next export",
+    "start": "APP_ENV=start next build && APP_ENV=start next start"
   },
   "repository": {
     "type": "git",
