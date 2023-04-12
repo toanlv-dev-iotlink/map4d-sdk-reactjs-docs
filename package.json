@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
-    "start": "next start"
+    "export": "cross-env APP_ENV=export next build && cross-env APP_ENV=export next export",
+    "start": "next build && next start"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@types/node": "18.11.10",
     "create-react-component-folder": "^0.3.7",
+    "cross-env": "^7.0.3",
     "typescript": "^4.9.3"
   }
 }
