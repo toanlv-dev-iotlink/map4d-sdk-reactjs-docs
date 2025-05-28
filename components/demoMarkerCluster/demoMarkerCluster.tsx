@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { MFMap, MFMarker, MFMarkerCluster } from "react-map4d-map"
 
 const locations = [
@@ -9,6 +9,12 @@ const locations = [
 ]
 
 const DemoMarkerCluster = () => {
+  const clusterIcon = useCallback((size) => {
+      if (size == 0) {
+        return new map4d.Icon(100, 100, 'https://docs.map4d.vn/images/cluster-green.png')
+      }
+      return new map4d.Icon(50, 50, 'https://docs.map4d.vn/images/cluster-blue.png')
+    }, [])
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
@@ -19,11 +25,12 @@ const DemoMarkerCluster = () => {
             controls: true
           }}
           accessKey={'d69ab3c4b70818de546a1b1bb15aeaa7'}
-          version={"2.4"} >
+          version={"2.6"} >
           <MFMarkerCluster
             minZoom={0}
             maxZoom={10}
             radius={150}
+            clusterIcon={clusterIcon}
             zoomOnClick
           >
             {

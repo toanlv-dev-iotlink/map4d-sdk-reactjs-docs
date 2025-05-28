@@ -3,7 +3,7 @@
 ## Sử dụng
 
 ```jsx filename="demo.js" copy
-import React from "react";
+import React, { useCallback } from "react";
 import { MFMap, MFMarker, MFMarkerCluster } from "react-map4d-map";
 
 const locations = [
@@ -11,9 +11,23 @@ const locations = [
   [106.704497, 10.769589],
   [106.404497, 10.769589],
   [106.204497, 10.749589],
-]
+];
 
 const DemoMarkerCluster = () => {
+  const clusterIcon = useCallback((size) => {
+    if (size == 0) {
+      return new map4d.Icon(
+        100,
+        100,
+        "https://docs.map4d.vn/images/cluster-green.png"
+      );
+    }
+    return new map4d.Icon(
+      50,
+      50,
+      "https://docs.map4d.vn/images/cluster-blue.png"
+    );
+  }, []);
   return (
     <>
       <div style={{ width: "100%", height: "400px" }}>
@@ -24,12 +38,13 @@ const DemoMarkerCluster = () => {
             controls: true,
           }}
           accessKey={"Your key"}
-          version={"2.4"}
+          version={"2.6"}
         >
           <MFMarkerCluster
             minZoom={0}
             maxZoom={10}
             radius={150}
+            clusterIcon={clusterIcon}
             zoomOnClick
           >
             {locations?.map((loc, index) => {
@@ -55,9 +70,10 @@ import DemoMarkerCluster from "../../components/demoMarkerCluster";
 
 ## Props
 
-| No  |    Name     | isRequired |  Type   | Default value |                                      Description                                      |
-| :-: | :---------: | :--------: | :-----: | :-----------: | :-----------------------------------------------------------------------------------: |
-|  1  |   minZoom   |    true    | number  |       0       |       Chỉ định mức zoom nhỏ nhất mà các marker có thể hiển thị theo từng nhóm.        |
-|  2  |   maxZoom   |   false    | number  |      22       |       Chỉ định mức zoom lớn nhất mà các marker có thể hiển thị theo từng nhóm.        |
-|  3  |   radius    |   false    | number  |      100      |                   Chỉ định bán kính của cluster theo đơn vị pixel.                    |
-|  4  | zoomOnClick |   fasle    | boolean |     true      | Chỉ định bản đồ có thể zoom khi người dùng click vào đối tượng MarkerClusterer không. |
+| No  |    Name     | isRequired |          Type          | Default value |                                      Description                                      |
+| :-: | :---------: | :--------: | :--------------------: | :-----------: | :-----------------------------------------------------------------------------------: |
+|  1  |   minZoom   |    true    |         number         |       0       |       Chỉ định mức zoom nhỏ nhất mà các marker có thể hiển thị theo từng nhóm.        |
+|  2  |   maxZoom   |   false    |         number         |      22       |       Chỉ định mức zoom lớn nhất mà các marker có thể hiển thị theo từng nhóm.        |
+|  3  |   radius    |   false    |         number         |      100      |                   Chỉ định bán kính của cluster theo đơn vị pixel.                    |
+|  4  | zoomOnClick |   fasle    |        boolean         |     true      | Chỉ định bản đồ có thể zoom khi người dùng click vào đối tượng MarkerClusterer không. |
+|  5  | clusterIcon |   fasle    | (size: number) => Icon |     true      |                              Chỉ định Icon dại diện gộp.                              |

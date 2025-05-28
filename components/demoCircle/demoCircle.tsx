@@ -17,7 +17,7 @@ const DemoCircle = () => {
           }}
           accessKey={"d69ab3c4b70818de546a1b1bb15aeaa7"}
           version={"2.4"} >
-          <MFCircle radius={radius} center={post}></MFCircle>
+          <MFCircle radius={radius} center={post} onClick={()=>{console.log("dsd")}}></MFCircle>
         </MFMap>
       </div>
     </>

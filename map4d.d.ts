@@ -624,7 +624,8 @@ declare module map4d {
     minZoom?: number
     maxZoom?: number
     radius?: number
-    zoomOnClick?: boolean
+    zoomOnClick?: boolean,
+    clusterIcon?: (size: number) => Icon
   }
 
   class MarkerClusterer {

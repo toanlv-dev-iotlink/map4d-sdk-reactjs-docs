@@ -8,11 +8,11 @@ const { PHASE_EXPORT, PHASE_PRODUCTION_BUILD } = require("next/constants");
 module.exports = (phase, { defaultConfig }) => {
   if (process.env.APP_ENV == "export") {
     return withNextra({
-      assetPrefix: "https://docs.map4d.vn/map4d-map/react-js/v1.2.7",
+      assetPrefix: "https://docs.map4d.vn/map4d-map/react-js/v1.3.9",
       images: {
         unoptimized: true,
       },
-      basePath: "/map4d-map/react-js/v1.2.7",
+      basePath: "/map4d-map/react-js/v1.3.9",
     });
   } else {
     return withNextra();
